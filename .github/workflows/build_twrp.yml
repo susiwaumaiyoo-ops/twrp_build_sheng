@@ -48,12 +48,12 @@ jobs:
           # Android 14端末ですが、TWRPのビルドシステムは12.1ベースが現在最も安定しています
           repo init --depth=1 -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1
           repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
-
       - name: Clone Device Tree
         run: |
           cd twrp
-          # sheng用の自動生成されたデバイスツリーを特定のブランチからクローンします
-          git clone https://github.com/Xiaomi-Pad-6S-Pro12-4-sheng/recovery_device_xiaomi_sheng.git
+          # 最後に「半角スペース」を空けて「device/xiaomi/sheng」と指定します
+          git clone https://github.com/Xiaomi-Pad-6S-Pro12-4-sheng/recovery_device_xiaomi_sheng.git device/xiaomi/sheng
+
       - name: Build TWRP Recovery Image
         run: |
           export PATH=$HOME/bin:$PATH
