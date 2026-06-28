@@ -53,7 +53,7 @@ jobs:
           cd twrp
           # 最後に「半角スペース」を空けて「device/xiaomi/sheng」と指定します
           git clone https://github.com/Xiaomi-Pad-6S-Pro12-4-sheng/recovery_device_xiaomi_sheng.git device/xiaomi/sheng
-          sed -i '/PRODUCT_STATIC_BOOT_CONTROL_HAL/d' device/xiaomi/sheng/device.mk
+          sed -i 's/PRODUCT_STATIC_BOOT_CONTROL_HAL/PRODUCT_STATIC_BOOT_CONTROL_HAL_UNUSED/g' device/xiaomi/sheng/device.mk
 
       - name: Build TWRP Recovery Image
         run: |
