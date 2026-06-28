@@ -59,15 +59,15 @@ jobs:
           # 2. vendor/omni への参照をすべて vendor/twrp に一括書き換え
           sed -i 's|vendor/omni|vendor/twrp|g' device/xiaomi/sheng/*.mk
 
-      - name: Build TWRP Recovery Image
+      - name: Build TWRP
         run: |
           export PATH=$HOME/bin:$PATH
           cd twrp
           export ALLOW_MISSING_DEPENDENCIES=true
           source build/envsetup.sh
-          # omni_sheng.mk に基づいてターゲットを設定します
           lunch omni_sheng-eng
-          mka recoveryimage -j$(nproc --all)
+          # 【修正】recoveryimage ではなく、bootimage と vendorbootimage をターゲットに指定します
+          mka bootimage vendorbootimage -j$(nproc --all)
 
       - name: Upload TWRP Build Artifacts
         uses: actions/upload-artifact@v4
