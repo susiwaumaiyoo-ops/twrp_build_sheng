@@ -53,8 +53,7 @@ jobs:
         run: |
           cd twrp
           # sheng用の自動生成されたデバイスツリーを特定のブランチからクローンします
-          git clone https://github.com/Xiaomi-Pad-6S-Pro12-4-sheng/recovery_device_xiaomi_sheng.git -b sheng-user-13-TKQ1.221114.001-OS2.0.102.0.VNXCNXM-release-keys device/xiaomi/sheng
-
+          git clone https://github.com/Xiaomi-Pad-6S-Pro12-4-sheng/recovery_device_xiaomi_sheng.git
       - name: Build TWRP Recovery Image
         run: |
           export PATH=$HOME/bin:$PATH
