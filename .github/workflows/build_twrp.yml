@@ -51,9 +51,13 @@ jobs:
       - name: Clone Device Tree
         run: |
           cd twrp
-          # 最後に「半角スペース」を空けて「device/xiaomi/sheng」と指定します
           git clone https://github.com/Xiaomi-Pad-6S-Pro12-4-sheng/recovery_device_xiaomi_sheng.git device/xiaomi/sheng
+          
+          # 1. 廃止された古い変数の置換（前回追加した部分）
           sed -i 's/PRODUCT_STATIC_BOOT_CONTROL_HAL/PRODUCT_STATIC_BOOT_CONTROL_HAL_UNUSED/g' device/xiaomi/sheng/device.mk
+          
+          # 2. vendor/omni への参照をすべて vendor/twrp に一括書き換え
+          sed -i 's|vendor/omni|vendor/twrp|g' device/xiaomi/sheng/*.mk
 
       - name: Build TWRP Recovery Image
         run: |
